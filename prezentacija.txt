@@ -1,0 +1,38 @@
+Slide 1
+Title: RESTful APIs
+
+
+Slide 2
+Title: What is API
+- specifies how some software components should interact with each other
+- API doesn't have to be RESTful
+- API doesn't have to be related to hypermedia concepts
+
+Subtitle: Web APIs
+- way to get your data to partners and apps
+- grow your business
+- drive usage, engage developers that will engage users
+- abstraction of complexity 
+
+Slide 3
+Title: REST History
+- Representational State Transfer
+- initial name "HTTP object model" - between October 1994 and August 1995
+- Roy Thomas Fielding's doctoral dissertation, HTTP, Apache server
+- how well-designed Web application should behave
+
+Slide 4
+Title: What is REST?
+- The name "Representational State Transfer" is intended to evoke an image of how a well-designed Web application behaves: a network of web pages (a virtual state-machine), where the user progresses through the application by selecting links (state transitions), resulting in the next page (representing the next state of the application) being transferred to the user and rendered for their use.
+- http://en.wikipedia.org/wiki/Representational_state_transfer
+
+Subtitle: What really is REST
+- architectural style for distributed hypermedia systems without "official" standard
+
+Subtitle: Method + URI = Action === REST 
+- Methods: GET, POST, PUT, DELETE = Uniform interface
+- URL identifies single resource (/users)
+- Actions: Create => POST, Read => GET, Update => PUT, Delete => DELETE
+- REST is not CRUD
+- Hypermedia as the Engine of Application State (HATEOAS)
+
