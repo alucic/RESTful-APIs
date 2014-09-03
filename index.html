@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>RESTful APIs</title>
+
+    <meta name="description" content="RESTful APIs presentation">
+    <meta name="author" content="Ante Lucic">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>RESTful APIs</h1>
+          <p>
+            <small><a href="http://github.com/alucic">Ante Lucic</a> / <a href="http://twitter.com/_alucic">@_alucic</a></small>
+          </p>
+        </section>
+
+        <section>
+          <section>
+            <h2>Overview</h2>
+            <ol>
+              <li>APIs</li>
+              <li>Web APIs and REST</li>
+              <li>What should you know</li>
+              <li>Testing tools</li>
+              <li>Designing the API</li>
+              <li>Demo</li>
+            </ol>
+          </section>
+          <section>
+            <h2>Ask questions</h2>
+          </section>
+          <section>
+            <h2>Be gentle</h2>
+          </section>
+        </section>
+
+        <section>
+          <h2>What is API</h2>
+          <ul>
+            <li>specifies how some software components should interact with each other</li>
+            <li>doesn't have to be RESTful</li>
+            <li>API doesn't have to be related to hypermedia concepts</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why Building APIs Matter</h2>
+          <ul>
+            <li>way to get your data to partners and apps</li>
+            <li>grow your business</li>
+            <li>drive usage, engage developers that will engage users</li>
+            <li>abstraction of complexity</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h2>Let's talk about REST</h2>
+          </section>
+          <section>
+            <h2>The History of REST</h2>
+            <ol>
+              <li>Representational State Transfer</li>
+              <li>initial name "HTTP object model" - between October 1994 and August 1995</li>
+              <li>Roy Thomas Fielding's doctoral dissertation, HTTP, Apache server</li>
+              <li>how well-designed Web application should behave</li>
+            </ol>
+          </section>
+          <section>
+            <h2>What is REST?</h2>
+            <p>The name "Representational State Transfer" is intended to evoke an image of how a well-designed Web application behaves: a network of web pages (a virtual state-machine), where the user progresses through the application by selecting links (state transitions), resulting in the next page (representing the next state of the application) being transferred to the user and rendered for their use.</p>
+          </section>
+          <section>
+            <h2>What really is REST</h2>
+            <p>architectural style for distributed hypermedia systems without "official" standard</p>
+          </section>
+          
+          <section id="fragments">
+            <h2>Definition of Rest</h2>
+            <ol>
+              <li class="fragment">Client-Server</li>
+              <li class="fragment">Stateless</li>
+              <li class="fragment">Cacheable</li>
+              <li class="fragment">Layered system</li>
+              <li class="fragment">Uniform interface
+                <ul>
+                  <li>Identification of resources</li>
+                  <li>Manipulation of resources</li>
+                  <li>Self-descriptive messages</li>
+                  <li>Hypermedia as the engine of application state (A.K.A. HATEOAS)</li>
+                </ul>
+              </li>
+              <li class="fragment">Code on demand</li>
+            </ol>
+          </section>
+        </section>
+
+        <section>
+          <h2>Testing tools</h2>
+          <ol>
+            <li>Postman for Chrome</li>
+            <li>Command line: HTTPie</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Method + Resource URL = Action</h2>
+          <p>HTTP Methods as uniform interface</p>
+          <p>URL identifies single resource</p>
+          <p>Mapping methods to actions</p>
+          <p>HATEOAS</p>
+        </section>
+
+        <section>
+          <h2>Mapping the methods</h2>
+          <img src="images/methods.png">
+          <p>Verbs are bad, nouns are good</p>
+          <p>Two base URLs</p>
+        </section>
+
+        <section>
+          <h2>Associations</h2>
+          <p>Relation between resources</p>
+          <pre><code data-trim contenteditable>
+Route::delete('lists/{id}', function($id)...
+          </code></pre>          <pre><code data-trim contenteditable>
+Route::post('lists/{id}/tasks', function($id)...
+          </code></pre>
+          <pre><code data-trim contenteditable>
+Route::get('lists/{list_id}/tasks/{id}', function($list_id, $id)...
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Complexity behind "?"</h2>
+          <p>Keep simple things simple, and complex possible</p>
+          <pre><code data-trim contenteditable>
+            GET lists/1/tasks?status=done
+          </code></pre>
+        </section>
+
+        <section>
+          <section>
+            <h2>Good Responses</h2>
+          </section>
+          <section>
+            <h2>Headers and status code</h2>
+            <ol>
+              <li>include headers content type, content length..</li>
+              <li>include status code
+                <ul>
+                  <li>200 success</li>
+                  <li>201 resource created</li>
+                  <li>400 request not fulfilled</li>
+                  <li>401 not authenticated</li>
+                  <li>404 not found</li>
+                  <li>500 other error</li>
+                </ul>
+              </li>
+            </ol>
+          </section>
+          <section>
+            <h2>Response body</h2>
+            <h5>Request on collection</h5>
+            <p>array of objects [{},{}..]</p>
+            <p>empty array []</p>
+            <br>
+            <br>
+            <h5>Single resource request</h5>
+            <p>object {}</p>
+          </section>
+        </section>
+
+        <section>
+          <h2>Try and error</h2>
+          <p>Help users</p>
+          <p>Proper status code</p>
+          <p>Be verbose</p>
+          <img src="images/msgforpeople.png">
+        </section>
+
+
+        <section>
+          <h2>Versioning</h2>
+          <p>Facebook</p>
+          <pre><code data-trim contenteditable>
+?v=1.0
+          </code></pre>
+          <p>Instagram</p>
+          <pre><code data-trim contenteditable>
+v1/users/1574083/
+          </code></pre>
+          <p>Rotten Tomatoes</p>
+          <pre><code data-trim contenteditable>
+api.rottentomatoes.com/api/public/v1.0/lists.json
+          </code></pre>
+          <p class="fragment">Laravel route group prefix</p>
+          <pre class="fragment"><code data-trim contenteditable>
+Route::group(array('prefix' => 'v1', 'before' => 'api.auth|api.limit'), function()
+{
+  // Get all lists
+  Route::get('lists', function()
+  {
+    $lists = Auth::user()->tasklists;
+
+    return Response::json($lists->toArray());
+  });
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Partial responses</h2>
+          <p>Facebook</p>
+          <pre><code data-trim contenteditable>
+/joe.smith/friends?fields=id,name,picture
+          </code></pre>
+          <p>Refinery29</p>
+          <pre><code data-trim contenteditable>
+/aggregators?columns=id,name&with=posts:0:100
+          </code></pre>
+          <p>Youtube</p>
+          <pre><code data-trim contenteditable>
+?fields=title,media:group(media:player,media:thumbnail)
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Pagination</h2>
+          <p>General</p>
+          <pre><code data-trim contenteditable>
+limit, offset
+          </code></pre>
+          <p>Instagram</p>
+          <pre><code data-trim contenteditable>
+count, min_tag_id, max_tag_id
+          </code></pre>
+          <p>Twitter</p>
+          <pre><code data-trim contenteditable>
+count, since_id, max_id
+          </code></pre>
+          <p>Defaults (depends on data size)</p>
+          <pre><code data-trim contenteditable>
+?limit=10&offset=0
+          </code></pre>
+          </section>
+          <section>
+            <pre><code data-trim contenteditable>
+pagination":  {
+    "next_url": "https://api.instagram.com/v1/users/self/feed?access_token=514638234.1fb234f.52ff15cc9344483b870677a0f47713d6&max_id=799946746008638427_1381716219",
+    "next_max_id": "799946746008638427_1381716219"
+  }
+            </code></pre>
+            <pre><code data-trim contenteditable>
+"links": {
+  "movies": "http://api.rottentomatoes.com/api/public/v1.0/lists/movies.json",
+  "dvds": "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds.json"
+}
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <h2>XML vs JSON</h2>
+          <p>Support both if needed</p>
+          <pre><code data-trim contenteditable>
+/users.json
+/users?type=json
+/users?format=xml
+Accept: application/json
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Authentication</h2>
+          <p>Oauth</p>
+
+          <p>The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service.</p>
+        </section>
+
+        <section>
+          limit method, route whatever?
+          overall hourly limit per user?
+
+          in-memory key:value storage
+          lightweight and fast
+          automatically expire keys at specified intervals
+        </section>
+        <section>
+          <h2>Links</h2>
+          <ul>
+            <li><a href="http://slid.es">Try the online editor</a></li>
+            <li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
+            <li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>THE END</h1>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme,
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+  </body>
+</html>
