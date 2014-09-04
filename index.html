@@ -36,12 +36,10 @@
           <section>
             <h2>Overview</h2>
             <ol>
-              <li>APIs</li>
-              <li>Web APIs and REST</li>
-              <li>What should you know</li>
+              <li>API</li>
+              <li>Web API and REST</li>
               <li>Testing tools</li>
               <li>Designing the API</li>
-              <li>Demo</li>
             </ol>
           </section>
           <section>
@@ -62,7 +60,7 @@
         </section>
 
         <section>
-          <h2>Why Building APIs Matter</h2>
+          <h2>Why Building API Matter</h2>
           <ul>
             <li>way to get your data to partners and apps</li>
             <li>grow your business</li>
@@ -274,6 +272,28 @@ pagination":  {
   "dvds": "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds.json"
 }
             </code></pre>
+            <pre><code data-trim contenteditable>
+{
+  "links": {
+    "posts.author": {
+      "href": "http://example.com/people/{posts.author}",
+      "type": "people"
+    },
+    "posts.comments": {
+      "href": "http://example.com/comments/{posts.comments}",
+      "type": "comments"
+    }
+  },
+  "posts": [{
+    "id": "1",
+    "title": "Rails is Omakase",
+    "links": {
+      "author": "9",
+      "comments": [ "5", "12", "17", "20" ]
+    }
+  }]
+}
+            </code></pre>
           </section>
         </section>
 
@@ -306,9 +326,13 @@ Accept: application/json
         <section>
           <h2>Links</h2>
           <ul>
-            <li><a href="http://slid.es">Try the online editor</a></li>
-            <li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-            <li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/api-craft">Api craft google group</a></li>
+            <li><a href="http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api?hn">Best practices</a></li>
+            <li><a href="http://httpstatus.es/">httpstatus.es</a></li>
+            <li><a href="http://apigee.com/about/resources">Apigee resources</a></li>
+            <li><a href="https://www.youtube.com/user/apigee">Apigee youtube</a></li>
+            <li><a href="http://jsonapi.org/">JSONapi.org</a></li>
+            <li><a href="https://github.com/jakubroztocil/httpie">httpie</a></li>
           </ul>
         </section>
 
